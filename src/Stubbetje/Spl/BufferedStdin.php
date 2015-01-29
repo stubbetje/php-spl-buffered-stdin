@@ -69,10 +69,10 @@ class BufferedStdin implements \SeekableIterator, \RecursiveIterator
 		);
 	}
 
-	public function __construct()
+	public function __construct( $filename = 'php://stdin' )
 	{
 		static::debug();
-		$this->_stdin = new SplFileObject( 'php://stdin', 'r' );
+		$this->_stdin = new SplFileObject( $filename, 'r' );
 		$this->_temp  = new SplTempFileObject();
 	}
 
