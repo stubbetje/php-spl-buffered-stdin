@@ -9,6 +9,3 @@ php:
 before_script:
   - composer self-update
   - composer dumpautoload -o
-
-script:
-  - echo "1111\n2222\n3333" | phpunit
