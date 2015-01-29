@@ -75,6 +75,9 @@ class BufferedStdin implements \SeekableIterator, \RecursiveIterator
 		static::debug();
 		$this->_stdin = new SplFileObject( $filename, 'r' );
 		$this->_temp  = new SplTempFileObject();
+
+		$this->_stdin->setFlags( SplFileObject::DROP_NEW_LINE );
+		$this->_temp->setFlags( SplFileObject::DROP_NEW_LINE );
 	}
 
 	/**
@@ -113,7 +116,7 @@ class BufferedStdin implements \SeekableIterator, \RecursiveIterator
 	{
 		static::debug();
 
-		if( $this->_currentLineNumber <= $this->_numberOfLinesBuffered ) {
+		if( $this->_currentLineNumber < $this->_numberOfLinesBuffered ) {
 			$this->_currentLineNumber++;
 			$this->_temp->seek( $this->_currentLineNumber );
 			$this->_numberOfLinesBuffered++;
@@ -147,7 +150,7 @@ class BufferedStdin implements \SeekableIterator, \RecursiveIterator
 	 */
 	public function valid()
 	{
-		throw new \Exception( 'NEEDS IMPLEMENTATION' );
+		return ! $this->eof();
 	}
 
 	/**
