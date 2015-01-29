@@ -46,9 +46,9 @@ class BufferedStdin implements \SeekableIterator, \RecursiveIterator
 		printf(
 			implode( null, array(
 				$n(),
-				'DEBUG ∷ current=[',
+				'DEBUG ∷ linenr=[',
 				$v( '%3d' ),
-				'] bufferd=[',
+				'] lines buffered=[',
 				$v( '%3d' ),
 				'] eof=[',
 				$v( '%s' ),
@@ -67,6 +67,7 @@ class BufferedStdin implements \SeekableIterator, \RecursiveIterator
 			$stack[ 'function' ],
 			$line
 		);
+		ob_flush();
 	}
 
 	public function __construct( $filename = 'php://stdin' )
