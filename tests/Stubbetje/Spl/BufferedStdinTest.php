@@ -13,5 +13,6 @@ class BufferedStdinTest extends \PHPUnit_Framework_TestCase
 		$file = new \SplFileObject( 'php://stdin', 'r' );
 
 		$file->rewind();
+		$this->assertFalse( $file->current() );
 	}
 }
